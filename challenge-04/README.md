@@ -7,15 +7,31 @@ um único parâmetro como argumento. Essa função deve retornar `true` se o
 equivalente booleano para o valor passado no argumento for `true`, ou `false`
 para o contrário.
 */
-var isTruthy = function(n){ if(n === n){ return true; } else{ return false } };
+var isTruthy = function(n){ 
+  return !!n; 
+};
 
 // Invoque a função criada acima, passando todos os tipos de valores `falsy`.
-?
+isTruthy(null);
+isTruthy(undefined);
+isTruthy('');
+isTruthy(0);
+isTruthy(false);
+isTruthy(NaN);
 
 /*
 Invoque a função criada acima passando como parâmetro 10 valores `truthy`.
 */
-?
+isTruthy(true);
+isTruthy(1);
+isTruthy(2);
+isTruthy([1,2,3,4,5,6]);
+isTruthy('rafael souza');
+isTruthy('rafinha');
+isTruthy([1,2,3,4,5,6]);
+isTruthy([]);
+isTruthy(2);
+isTruthy(20);
 
 /*
 Declare uma variável chamada `carro`, atribuindo à ela um objeto com as
@@ -123,7 +139,7 @@ Qual a cor atual do carro?
 preto
 
 // Mude a cor do carro para vermelho.
-carro.mudaCor('vermelho');
+carro.mudarCor('vermelho');
 
 // E agora, qual a cor do carro?
 vermelho
@@ -147,7 +163,14 @@ carro.entrarNoCarro(4);
 carro.entrarNoCarro(3);
 
 // Tire 4 pessoas do carro.
-carro.entrarNoCarro(-4);
+carro.sairDoCarro = function(n){
+  if(n <= carro.quantidadePessoas){
+    carro.quantidadePessoas -= n;
+    return 'restaram '+ carro.quantidadePessoas + ' no carro !';
+  }else{
+    return 'Nao ha esse tanto de pessoas no carro'; 
+  }
+};
 
 // Adicione 10 pessoas no carro.
 carro.entrarNocarro(10);
