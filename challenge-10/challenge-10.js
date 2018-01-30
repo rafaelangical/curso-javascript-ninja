@@ -24,6 +24,14 @@
 	função receberá dois parâmetros e retornará a operação referente à sua
 	propriedade, usando os valores passados por parâmetro.
 	*/
+	var operation = {
+		'+': function(x,y){return x+y; },
+		'-': function(x,y){return x-y; },
+		'/': function(x,y){return x/y; },
+		'%': function(x,y){return x%y; }
+	}; 
+
+	console.log(operation(3+5));
 
 	/*
 	Crie uma função chamada `isOperatorValid`, que receberá um operador por
