@@ -18,7 +18,7 @@
 	    console.log( 'Na funçoã `myFunction`, o segundo número é', number2 )
 	    return number1 + number2
 	}
-	myFunction()
+	myFunction();
 
 	myFunction2();
 	
@@ -61,17 +61,18 @@
 	por parâmetro, INVOCADA, e passando a ela por parâmetro os dois valores
 	que foram passadas para a primeira função `calculator`.
 	*/
-	// function calculator(x,y){
-	//     return function (function (callback())){
-	    	
-	//     }
-	// }
+	function calculator(x,y){
+	    return function (callback){
+	    	return callback(x,y);
+	    };
+	}
 
 	/*
 	Declare uma variável chamada `sum`, e atribua a ela a função `calculator`,
 	passando dois números por parâmetro.
 	*/
-	// var sum = calculator(2,3)
+
+	var sum = calculator(2,3);
 
 	/*
 	Sabemos que `sum` agora tem uma função atribuída a ela, que é o retorno de
@@ -82,15 +83,21 @@
 	uma função anônima que irá retornar a soma dos dois números que essa função
 	anônima tem como seus argumentos.
 	*/
-	console.log( 'O resultado da soma é:' );
-	// ?
 
+	console.log( 'O resultado da soma é:' );
+
+	console.log( sum(function(x,y){
+		return x+y;
+	}) );
 	/*
 	Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
 	`division` e `mod`, e atribua à elas `calculator`, passando números
 	diferentes para cada chamada.
 	*/
-	// ?
+	var subtracion = calculator(10,20);
+	var division = calculator(100,3);
+	var multiplication = calculator(3,99);
+	var mod = calculator(77,33);
 
 	/*
 	Mostre as variáveis acima no `console` (uma chamada de console por variável),
@@ -100,14 +107,23 @@
 	chamada.
 	*/
 	console.log( 'O resultado da subtração é:' );
-	// ?
+	console.log( subtracion(function(x,y){
+		return x - y;
+	}) );
 
 	console.log( 'O resultado da multiplicação é:' );
-	// ?
+	console.log( multiplication(function(x,y){
+		return x * y;
+	}) );
 
 	console.log( 'O resultado da divisão é:' );
-	// ?
+	console.log( division(function(x,y){
+		return x / y;
+	}) );
 
 	console.log( 'O resto da divisão é:' );
-	// ?
+	console.log( mod(function(x,y){
+		return x % y;
+	}) );
+
 })();
