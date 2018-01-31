@@ -28,10 +28,9 @@
 		'+': function(x,y){return x+y; },
 		'-': function(x,y){return x-y; },
 		'/': function(x,y){return x/y; },
+		'*': function(x,y){return x*y; },
 		'%': function(x,y){return x%y; }
 	}; 
-
-	console.log(operation(3+5));
 
 	/*
 	Crie uma função chamada `isOperatorValid`, que receberá um operador por
@@ -43,7 +42,9 @@
 	Caso contrário, "false".
 	- O desafio é fazer o retorno sem usar "if" ou "switch".
 	*/
-	// ?
+	function isOperatorValid(operador){
+		return !!operation[operador];
+	} 
 
 	/*
 	Agora vamos criar a calculadora.
@@ -57,7 +58,18 @@
 	operador passado para a função "calculator", e passando para esse método
 	os dois parâmetros da função de retorno de "calculator".
 	*/
-	// ?
+
+	function calculator(operador){
+		if(isOperatorValid(operador)){
+			return function(x,y){
+				if(typeof x !== 'number' || typeof y !== 'number'){
+					return false;
+				}
+				return operation[operador](x,y);
+			}
+		}
+		return false;
+	}
 
 	/*
 	Crie uma função chamada "showOperationMessage" que recebe três parâmetros:
@@ -66,7 +78,10 @@
 	'A operação [NUMBER1] [OPERATOR] [NUMBER2] =';
 	Essa função mostrará a mensagem da operação que criaremos mais abaixo.
 	*/
-	// ?
+
+	function showOperationMessage(operador,x,y){
+		return 'A operação ' + x + ' ' + operador + ' ' + y + ' = '; 
+	}
 
 	/*
 	Crie uma função chamada "showErrorMessage" que recebe um parâmetro: o
@@ -74,7 +89,10 @@
 	Essa função deverá retornar a frase:
 	'Operação "[OPERATOR]" não permitida!'
 	*/
-	// ?
+
+	function showErrorMessage(operador){
+		return 'Operação "' + operador + '" não permitida !';
+	}
 
 	/*
 	Nossa calculadora está pronta! Agora vamos testá-la:
@@ -82,7 +100,11 @@
 	- Declare 3 variáveis: "number1" e "number2", iniciando com valor zero, e
 	"operationSignal", sem valor por enquanto.
 	*/
-	// ?
+
+	var number1 = 0;
+	var number2 = 0;
+	var operationSignal;
+
 
 	/*
 	PASSO 2:
@@ -90,7 +112,8 @@
 	variável chamada "sum", que receba a função "calculator", passando por
 	parâmetro a variável que recebeu o sinal da operação.
 	*/
-	// ?
+	operationSignal = '+';
+	var sum = calculator(operationSignal);
 
 	/*
 	PASSO 3:
@@ -104,18 +127,94 @@
 	- O segundo, a função de soma, passando os dois operandos.
 	- Se "sum" for "false", mostrar no console a mensagem de erro.
 	*/
-	// ?
+	if( sum ){
+		number1 = 10;
+		number2 = 50;
+
+		console.log(showOperationMessage(operationSignal,number1,number2), sum(number1, number2));
+	
+	}else
+
+		console.log(showErrorMessage(operationSignal));
+
 
 	/*
 	Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
 	divisão e resto. Crie variáveis com os nomes "subtraction",
 	"multiplication", "division" e "mod".
 	*/
-	// ?
+
+
+	//subtracao
+	var subtracao = '-';
+	sum = calculator(subtracao);
+
+	if( sum ){
+
+		number1 = 100;
+		number2 = 50;
+
+		console.log(showOperationMessage(subtracao,number1,number2), sum(number1, number2));
+
+	}else
+
+		console.log(showErrorMessage(subtracao));
+
+	//multiplicacao	
+	var multiplicacao = '*';
+	sum = calculator(multiplicacao);
+	
+	if(sum){
+
+		number1 = 10;
+		number2 = 50;
+
+		console.log(showOperationMessage(multiplicacao,number1,number2), sum(number1, number2));
+
+	}else
+
+		console.log(showErrorMessage(multiplicacao));
+
+	//divisao	
+	var divisao = '/';
+	sum = calculator(divisao);
+
+	if(sum){
+		number1 = 10;
+		number2 = 5000;
+
+		console.log(showOperationMessage(divisao,number1,number2), sum(number1, number2));
+	}else
+
+		console.log(showErrorMessage(divisao));
+
+	//resto
+	var resto =  '%';
+	sum = calculator(resto);
+
+	if (sum){
+		number1 = 124470;
+		number2 = 500477;
+
+		console.log(showOperationMessage(resto,number1,number2), sum(number1, number2));
+	}else
+
+		console.log(showErrorMessage(resto));
 
 	/*
 	Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
 	a mensagem de erro será mostrada no console.
 	*/
-	// ?
+	var invalido =  'xx';
+	sum = calculator(invalido);
+
+	if (sum){
+		number1 = 124470;
+		number2 = 500477;
+
+		console.log(showOperationMessage((operationSignal,number1,number2)), sum(number1, number2));
+	}else
+
+		console.log(showErrorMessage(invalido));
+	
 }) ();
