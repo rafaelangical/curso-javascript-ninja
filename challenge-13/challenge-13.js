@@ -98,25 +98,35 @@ propriedades:
 - `id`: que será o índice do array `brasil`,
 - `estado`: que será o estado do array `brasil`.
 */
-var newBrasil = brasil.forEach(function(estado, id){
-	console.log("Estado: "+estado+" Id: "+ id);
+var newBrasil = [];
+
+brasil.forEach(function(estado, id){
+	newBrasil.push({id: id, estado: estado });
 });
 
 /*
 Mostre o array `newBrasil` no console
 */
 console.log( '\nnewBrasil:' );
-console.log(newBrasil());
-
+console.log(newBrasil);
 /*
 Percorra o array `brasil` e verifique se os estados tem mais de 7 letras cada,
 atribuindo o resultado à uma variável. Se tiver, mostre no console a frase:
 - "Sim, todos os estados tem mais de 7 letras!"
 Senão, mostre no console:
 - "Nem todos os estados tem mais de 7 letras!"
+
 */
+
+var every = brasil.every(function(estado){
+	return estado.length > 7;
+});
+
 console.log( '\nTodos os estados de `brasil` tem mais de 7 letras?' );
-// ?
+if( every > 7){
+	console.log("Sim, todos os estados tem mais de 7 letras!");
+}
+	console.log("Nem todos os estados tem mais de 7 letras!");
 
 /*
 Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
@@ -127,31 +137,43 @@ Senão, mostrar a frase:
 - "Ceará não foi incluído :("
 */
 console.log( '\nCeará está incluído em `brasil`?' );
-// ?
+var ceara = brasil.some(function(estado){
+	return estado === 'Ceará';
+});
 
+if( ceara === true){
+	console.log("Ceará esta incluso");
+}else
+	console.log("Ceará não esta incluso");
 /*
 Percorra o array `newBrasil` e crie um novo array que some 1 no ID de cada
 objeto desse array, e adicione a frase abaixo na propriedade `estado`:
 - "[ESTADO] pertence ao Brasil."
 Atribua o novo array a uma variável chamada `map`.
 */
-// ?
+var map = [];
+newBrasil.forEach(function(estado,id){
+	map.push({estado: estado, id: id+1}); 
+});
 
 /*
 Mostre no console o array criado acima:
 */
 console.log( '\nnewBrasil agora com mais informações:' );
-// ?
+console.log(map);
 
 /*
 Filtre o array criado acima, retornando somente os estados que tiverem
 ID par. Atribua o valor à uma variável chamada `filter`.
 */
-// ?
+var filter = [];
 
-/*
-Mostre o array filtrado acima no console.
-*/
+//Mostre o array filtrado acima no console.
+newBrasil.filter(function(estado,id){
+	if( id % 2 === 0 ){
+		filter.push({id}); 
+	}
+});
 console.log( '\nEstados com ID par:' );
-// ?
+console.log(filter);
 }) ();
